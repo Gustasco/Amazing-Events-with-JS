@@ -1,0 +1,48 @@
+body{
+    background-color: rgba(0, 0, 139, 0.236) !important;
+}
+html {
+    box-sizing: border-box;
+}
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+html,body {
+    background:#777;
+    padding:0;
+    margin:0;
+    font-family:sans-serif;
+}
+form {
+width:90%;
+    max-width:500px;
+    margin:15px auto;
+}
+input, textarea {
+    width:100%;
+    margin-bottom:10px;
+    border-radius:3px;
+    padding:4px 7px;
+}
+#eml, #tel {
+    width:49%;
+}
+#tel {
+    float:right;
+}
+button {
+    width: 120px;
+    float:right;
+    margin-left:15px;
+    border-radius:3px;
+    padding:4px 7px;
+}
+tr, th, td{
+    border: 2px solid black;
+}
+.card{
+    margin: 50px;
+}
+.card-body{
+    text-align: center;
+}
