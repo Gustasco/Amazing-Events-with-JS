@@ -1,5 +1,6 @@
 body{
-    background-color: rgba(0, 0, 139, 0.236) !important;
+    background-image: url("./images/Fondo.jpg") !important;
+    background-position: inherit !important;
 }
 html {
     box-sizing: border-box;
@@ -15,7 +16,6 @@ html,body {
 }
 form {
 width:90%;
-    max-width:500px;
     margin:15px auto;
 }
 input, textarea {
@@ -31,11 +31,8 @@ input, textarea {
     float:right;
 }
 button {
-    width: 120px;
     float:right;
-    margin-left:15px;
     border-radius:3px;
-    padding:4px 7px;
 }
 tr, th, td{
     border: 2px solid black;

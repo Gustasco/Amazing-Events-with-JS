@@ -171,19 +171,3 @@ const data = {
     }
     ]
 }
-let card = document.getElementById("cardsita");
-
-data.events.map((x) => {
-    card.innerHTML += `
-    <div class="col-sm-5">
-    <div class="card">
-        <img src="${x.image}" class="card-img-top" alt="${x.name}">
-    <div class="card-body">
-        <h5 class="card-title">${x.name}</h5>
-        <p class="card-text">${x.description}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    </div>
-</div>
-    `;
-});
