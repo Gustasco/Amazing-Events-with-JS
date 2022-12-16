@@ -43,3 +43,6 @@ tr, th, td{
 .card-body{
     text-align: center;
 }
+#editFondoCard{
+    background-image: url("./images/Fondo.jpg");
+}
