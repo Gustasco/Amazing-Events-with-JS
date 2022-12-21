@@ -1,39 +1,37 @@
-import {crearCheckbox, crearCard} from "./Functions.js";
-let categories = data.events.map((x)=> x.category);//toma todas las categorias del data
-const categoriesNoRepeat = new Set(categories);//toma las categorias sin repetirlas
-let categoryxd = Array.from(categoriesNoRepeat);//crea un array con las categorias desde el set
-let card = document.getElementById("cardsita")//se llama al Id del div de card para añadirla
+import {crearCheckbox, crearCard, filter, filterText} from "./Functions.js";
+let url = "https://amazing-events.onrender.com/api/events"
+let data = ""
+fetch(url).then(respuesta => respuesta.json()).then(datas=>{
+    data = datas
+    console.log("se ejecuto el segundo then")
+    let categories = data.events.map((x)=> x.category);//toma todas las categorias del data
+    const categoriesNoRepeat = new Set(categories);//toma las categorias sin repetirlas
+    let categoryxd = Array.from(categoriesNoRepeat);//crea un array con las categorias desde el set
+    crearCard(data.events, card)//se crea en el html las cards
+    crearCheckbox(categoryxd, createCheckBox)//se crea en el html los checkboxes
+})
 let createCheckBox = document.getElementById("checkboxing")//toma un formulario desde un ID para añadir un checkbox
-let elementEvents = data.events//llama al objeto "events" dentro del array data
 let buscador = document.getElementById("search")//se llama al al imput texto para volverlo un buscador
+let card = document.getElementById("cardsita")//se llama al Id del div de card para añadirla
 
-crearCheckbox(categoryxd, createCheckBox)//se crea en el html los checkboxes
-crearCard(elementEvents, card)//se crea en el html las cards
 
-createCheckBox.addEventListener('change', (xd)=>{//elimina o muestra las cards relacionadas al checkbox
-    filter(elementEvents);
+
+createCheckBox.addEventListener('change', ()=>{//elimina o muestra las cards relacionadas al checkbox
+    let fill = filterr()
+    crearCard(fill, card)
 })
 
 buscador.addEventListener('input', ()=>{//elimina o muestra las cards relacionadas al texto que se escriba en el imput texto
-    let filterOFText = filterText(elementEvents, buscador.value)
-    crearCard(filterOFText, card)
+    let fill = filterr()
+    crearCard(fill, card)
 })
 
-function filter(event) {//filtrador por categoria
-    let filtrar = [...document.querySelectorAll("input[type ='checkbox']:checked")].map((element) => element.value);//transforma los checkbox en array para tomar el value de cada uno
-    
-    let newArrayWithFilter = filtrar.map(valor  => event.filter( object => {
-    return object.category === valor
-    }   )).flat() 
-    console.log(newArrayWithFilter)
-    
-    if (!filtrar.length) {//Si no hay ningun checkbox marcado, se imprimen todas las cards
-        crearCard(elementEvents, card)
-    }else {//Si se marca un checkbox se compara el value del checkbox marcado 
-        crearCard(newArrayWithFilter, card)
+function filterr(){
+    let filtradosPorCategoria = filter(data.events);
+    let filtradosPorBusqueda = filterText(filtradosPorCategoria, buscador.value);
+    if(filtradosPorCategoria.length==0){
+        filtradosPorBusqueda = filterText(data.events, buscador.value)
     }
-    return newArrayWithFilter
-    }
-function filterText(eventos, valueSearch){//filtrado por texto
-    return eventos.filter( evento=>evento.name.toLowerCase().includes(valueSearch.toLowerCase()))
+    return filtradosPorBusqueda
 }
+
